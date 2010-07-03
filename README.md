@@ -1,9 +1,7 @@
 Labelr
 ======
 
-	require 'label'
-	require 'page'
-	require 'document'
+	require 'labelr'
 
 	label1 = Label.new(2, "João", "Rua A", "Centro", "22221222", "Rio de Janeiro", "RJ")
 	label2 = Label.new(1, "João", "Rua A", "Centro", "22221222", "Rio de Janeiro", "RJ")
@@ -15,8 +13,5 @@ Labelr
 	document = Document.new
 	document.add_page(page)
 	document.add_page(page)
-	document.add_page(page)
-	document.add_page(page)
-	document.add_page(page)
-	document.add_page(page)
+
 	document.print

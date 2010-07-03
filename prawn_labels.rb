@@ -28,6 +28,9 @@ module Prawn
         raise "Label Type Unknown '#{options[:type]}'" 
       end
       
+      @label_width = type["label_width"]
+      @label_height = type["label_height"]
+      
       @document = Document.new  :page_size => type["page_size"],
                                 :top_margin  => type["top_margin"].cm,
                                 :bottom_margin  => type["bottom_margin"].cm,
@@ -94,7 +97,7 @@ module Prawn
       end
 
       b = @document.grid(p.first, p.last)
-      @document.bounding_box b.top_left, :width => 10.16.cm, :height => 3.39.cm do
+      @document.bounding_box b.top_left, :width => @label_width.cm, :height => @label_height.cm do
         # @document.stroke do
 
         # @document.rectangle(@document.bounds.top_left, @document.bounds.width, @document.bounds.height)
