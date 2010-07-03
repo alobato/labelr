@@ -1,0 +1,10 @@
+pimaco6082:
+  page_size: LETTER
+  top_margin: 2.12
+  bottom_margin: 2.12
+  left_margin: 0.4
+  right_margin: 0.4
+  columns: 2
+  rows: 7
+  column_gutter: 0.5
+  row_gutter: 0
