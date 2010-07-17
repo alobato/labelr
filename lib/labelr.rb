@@ -1,0 +1,1 @@
+require 'labelr/labelr'

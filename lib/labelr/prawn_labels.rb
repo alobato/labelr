@@ -14,15 +14,17 @@ module Prawn
   class Labels
     attr_reader :document, :type
     
-    def self.generate(file_name, data, options = {}, &block)                               
-      labels = Labels.new(data, options,&block)
+    def self.generate(file_name, data, guide, options = {}, &block)                               
+      labels = Labels.new(data, guide, options,&block)
       
       labels.document.render_file(file_name)
     end
     
-    def initialize(data, options={}, &block)
+    def initialize(data, guide, options={}, &block)
       types_file = File.join(File.dirname(__FILE__), 'models.yml')
       types      = YAML.load_file(types_file)
+      
+      @guide = guide
       
       unless @type = types[options[:type]]
         raise "Label Type Unknown '#{options[:type]}'" 
@@ -80,31 +82,40 @@ module Prawn
     def create_label(i,record,&block)
       p = row_col_from_index(i)
       
-      #  @document.stroke_color = "000000"
-      # 
+      #
+      # @document.stroke_color = "000000"
+      
       # @document.fill_and_stroke do
       #   @document.rectangle [300,300], 100, 200
       # end
+      #
       
-      @document.stroke_color = "000000"
-      @document.stroke do
-        @document.horizontal_line 10.3.cm, 10.5.cm, :at => 23.7.cm
-        @document.vertical_line 23.7.cm, 23.5.cm, :at => 10.4.cm
+      if @guide
+              
+        @document.stroke_color = "000000"
+        @document.stroke do
+          @document.horizontal_line 10.3.cm, 10.5.cm, :at => 23.7.cm
+          @document.vertical_line 23.7.cm, 23.5.cm, :at => 10.4.cm
         
-        @document.horizontal_line 10.3.cm, 10.5.cm, :at => 0.cm
-        @document.vertical_line 0.cm, 0.2.cm, :at => 10.4.cm
-         
+          @document.horizontal_line 10.3.cm, 10.5.cm, :at => 0.cm
+          @document.vertical_line 0.cm, 0.2.cm, :at => 10.4.cm
+        end
+    
       end
 
       b = @document.grid(p.first, p.last)
       @document.bounding_box b.top_left, :width => @label_width.cm, :height => @label_height.cm do
+        
+        #
         # @document.stroke do
-
+        #
         # @document.rectangle(@document.bounds.top_left, @document.bounds.width, @document.bounds.height)
       
         @document.indent(30) do
           yield(@document, record)
         end
+        
+        #
         # end
 
       end

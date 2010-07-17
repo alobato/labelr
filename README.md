@@ -1,17 +1,32 @@
 Labelr
 ======
+based on http://github.com/jordanbyron/prawn-labels
+
 
 	require 'labelr'
 
-	label1 = Label.new(2, "João", "Rua A", "Centro", "22221222", "Rio de Janeiro", "RJ")
-	label2 = Label.new(1, "João", "Rua A", "Centro", "22221222", "Rio de Janeiro", "RJ")
+	labels = {
+		"name\naddress1\naddress2\nzipcode   city - state",
+		"name\naddress1\naddress2\nzipcode   city - state"
+		"name\naddress1\naddress2\nzipcode   city - state"
+		"name\naddress1\naddress2\nzipcode   city - state"
+	}
 
-	page = Page.new
-	page.add_label(label1)
-	page.add_label(label2)
-
-	document = Document.new
-	document.add_page(page)
-	document.add_page(page)
+	document = Labelr::Document.new(:pimaco6082)
+	document.labels = labels
 
 	document.print
+
+
+Or use positioned label on page
+
+
+	label1 = "name\naddress1\naddress2\nzipcode   city - state"
+	label2 = "name\naddress1\naddress2\nzipcode   city - state"
+
+	page = Labelr::Page.new(:pimaco6082)
+
+	page.add_label_at_position(3, label)
+	page.add_label_at_position(13, label)
+
+	page.print
