@@ -11,6 +11,9 @@ Gem::Specification.new do |gem|
   gem.authors  = ['alobato']
   gem.homepage = 'http://twitter.com/alobato'
 
+  gem.add_dependency('prawn', '>= 0.8.4')
+  gem.add_development_dependency('rspec')
+
   gem.files = Dir['lib/**/*', 'README*'] & `git ls-files -z`.split("\0")
   gem.test_files = Dir['spec/**/*', 'README*'] & `git ls-files -z`.split("\0")
 end
