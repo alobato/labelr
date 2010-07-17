@@ -1,1 +1,1 @@
-gem "prawn", "0.8.4"
+gem 'prawn', '0.8.4'
