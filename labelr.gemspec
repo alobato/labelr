@@ -1,8 +1,12 @@
 # -*- encoding: utf-8 -*-
+lib = File.expand_path('../lib/', __FILE__)
+$:.unshift lib unless $:.include?(lib)
+
+require 'labelr/version'
 
 Gem::Specification.new do |gem|
   gem.name    = 'labelr'
-  gem.version = '0.1.0'
+  gem.version = Labelr::VERSION
   gem.date    = Time.now.strftime('%Y-%m-%d')
   gem.summary = "Generator for labels"
   gem.description = "Generate label sheets"
